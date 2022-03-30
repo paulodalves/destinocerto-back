@@ -13,13 +13,17 @@ public class Viagem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nomedestino;
     private String dataviagem;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private User user;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "destino_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Destino destino;
 
     public Long getId() {
         return id;
@@ -27,14 +31,6 @@ public class Viagem {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getNomedestino() {
-        return nomedestino;
-    }
-
-    public void setNomedestino(String nomedestino) {
-        this.nomedestino = nomedestino;
     }
 
     public String getDataviagem() {
@@ -51,5 +47,13 @@ public class Viagem {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Destino getDestino() {
+        return destino;
+    }
+
+    public void setDestino(Destino destino) {
+        this.destino = destino;
     }
 }
